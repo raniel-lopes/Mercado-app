@@ -1,10 +1,5 @@
 # 🏪 Mercado App - Sistema de Pagamentos com FiadoPay
 
-**Disciplina:** Programação Orientada a Objetos Avançada (POOA)  
-**Aluno:** Raniel Lopes  
-**Data:** 21/11/2025  
-**Contexto Escolhido:** Opção 2 - Mercado
-
 ---
 
 ## 📖 Contexto
