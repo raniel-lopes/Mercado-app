@@ -53,6 +53,15 @@ public class TokenRefreshJob implements Runnable {
         }
     }
 
+    /**
+     * Define o token atual manualmente (quando obtido pela opção 2)
+     * @param token Token obtido
+     */
+    public void setCurrentToken(String token) {
+        this.currentToken = token;
+        logger.info("[TokenRefreshJob] Token definido manualmente");
+    }
+
     public String getCurrentToken() {
         return currentToken;
     }

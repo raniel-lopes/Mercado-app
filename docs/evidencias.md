@@ -105,9 +105,9 @@ Este documento apresenta prints de tela da aplicação em funcionamento, demonst
 
 | Funcionalidade | Print | Status |
 |----------------|-------|--------|
-| Menu Principal | 01 | ✅ |
+| Menu Principal | 03 | ✅ |
 | Plugins por Reflexão | 02 | ✅ |
-| Cadastro Merchant | 03, 04 | ✅ |
+| Cadastro Merchant | 01, 04 | ✅ |
 | Obtenção Token | 05 | ✅ |
 | Jobs Agendados | 06, 12 | ✅ |
 | Pagamento PIX | 07 | ✅ |

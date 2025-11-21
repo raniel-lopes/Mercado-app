@@ -275,32 +275,32 @@ java -jar target/mercado-app-1.0-SNAPSHOT.jar
 
 ### **Técnicos:**
 1. **Webhook não implementado como servidor HTTP**
-   - O campo `webhookUrl` é cadastrado, mas não há listener ativo
-   - Reconciliação usa polling (a cada 30s) como alternativa
+    - O campo `webhookUrl` é cadastrado, mas não há listener ativo
+    - Reconciliação usa polling (a cada 30s) como alternativa
 
 2. **Token não persiste entre execuções**
-   - Armazenado em memória (variável `currentToken`)
-   - Ao reiniciar, precisa obter novo token
+    - Armazenado em memória (variável `currentToken`)
+    - Ao reiniciar, precisa obter novo token
 
 3. **Sem persistência de dados**
-   - Pagamentos não salvos em banco
-   - Histórico perdido ao encerrar aplicação
+    - Pagamentos não salvos em banco
+    - Histórico perdido ao encerrar aplicação
 
 4. **Tratamento de erros básico**
-   - Exceptions genéricas com `try-catch`
-   - Poderia usar exceptions customizadas
+    - Exceptions genéricas com `try-catch`
+    - Poderia usar exceptions customizadas
 
 ### **Funcionais:**
 1. **Limite antifraude fixo** (R$ 10.000)
-   - Configurável via anotação, mas não há UI para alterar
+    - Configurável via anotação, mas não há UI para alterar
 
 2. **Jobs não pausam individualmente**
-   - Ao iniciar (opção 10), ambos os jobs iniciam
-   - Shutdown encerra todos
+    - Ao iniciar (opção 10), ambos os jobs iniciam
+    - Shutdown encerra todos
 
 3. **Reconciliação infinita**
-   - Não há limite de tempo para pagamentos PENDING
-   - Poderia adicionar timeout
+    - Não há limite de tempo para pagamentos PENDING
+    - Poderia adicionar timeout
 
 ---
 

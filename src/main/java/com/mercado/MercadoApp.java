@@ -171,47 +171,50 @@ public class MercadoApp {
      * 2. Obter Token de Autenticação
      */
     private static void obterToken(Scanner scanner) {
-        System.out.println("\n=== Obter Token ===");
+    System.out.println("\n=== Obter Token ===");
 
-        String clientId, clientSecret;
+    String clientId, clientSecret;
 
-        if (currentMerchant != null) {
-            System.out.println("Usar credenciais do merchant atual? (S/N)");
-            String resposta = scanner.nextLine();
+    if (currentMerchant != null) {
+        System.out.println("Usar credenciais do merchant atual? (S/N)");
+        String resposta = scanner.nextLine();
 
-            if (resposta.equalsIgnoreCase("S")) {
-                clientId = currentMerchant.getClientId();
-                clientSecret = currentMerchant.getClientSecret();
-            } else {
-                System.out.print("Client ID: ");
-                clientId = scanner.nextLine();
-                System.out.print("Client Secret: ");
-                clientSecret = scanner.nextLine();
-            }
+        if (resposta.equalsIgnoreCase("S")) {
+            clientId = currentMerchant.getClientId();
+            clientSecret = currentMerchant.getClientSecret();
         } else {
             System.out.print("Client ID: ");
             clientId = scanner.nextLine();
             System.out.print("Client Secret: ");
             clientSecret = scanner.nextLine();
         }
-
-        try {
-            TokenResponse token = fiadoPayClient.getToken(clientId, clientSecret);
-
-            // Cria o TokenRefreshJob se não existir
-            if (tokenRefreshJob == null) {
-                tokenRefreshJob = new TokenRefreshJob(fiadoPayClient, clientId, clientSecret);
-                System.out.println("\n[DICA] Voce pode iniciar os jobs automaticos na opcao 10!");
-            }
-
-            System.out.println("\n[SUCESSO] Token obtido com sucesso!");
-            System.out.println("          Token: " + token.getAccess_token());
-            System.out.println("          Expira em: " + token.getExpires_in() + " segundos");
-
-        } catch (Exception e) {
-            System.out.println("[ERRO] " + e.getMessage());
-        }
+    } else {
+        System.out.print("Client ID: ");
+        clientId = scanner.nextLine();
+        System.out.print("Client Secret: ");
+        clientSecret = scanner.nextLine();
     }
+
+    try {
+        TokenResponse token = fiadoPayClient.getToken(clientId, clientSecret);
+
+        // Cria o TokenRefreshJob se não existir
+        if (tokenRefreshJob == null) {
+            tokenRefreshJob = new TokenRefreshJob(fiadoPayClient, clientId, clientSecret);
+            System.out.println("\n[DICA] Voce pode iniciar os jobs automaticos na opcao 10!");
+        }
+        
+        
+        tokenRefreshJob.setCurrentToken(token.getAccess_token());
+
+        System.out.println("\n[SUCESSO] Token obtido com sucesso!");
+        System.out.println("          Token: " + token.getAccess_token());
+        System.out.println("          Expira em: " + token.getExpires_in() + " segundos");
+
+    } catch (Exception e) {
+        System.out.println("[ERRO] " + e.getMessage());
+    }
+}
 
     /**
      * 3. Criar Pagamento (com plugins + antifraude + FiadoPay)
